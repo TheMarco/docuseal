@@ -62,6 +62,20 @@ DocuSeal is an open source platform that provides secure and efficient digital d
 
 ## Deploy
 
+## 🔧 Configurable Subpath
+
+This fork supports deploying DocuSeal at any subpath (e.g., `/docuseal`, `/documents`, `/signing`).
+
+**Environment Variable:**
+```bash
+DOCUSEAL_SUBPATH=/your-custom-path  # Default: /docuseal
+```
+
+**Example:**
+- Set `DOCUSEAL_SUBPATH=/documents` to deploy at `https://yoursite.com/documents`
+- Set `DOCUSEAL_SUBPATH=/signing` to deploy at `https://yoursite.com/signing`
+
+
 |Heroku|Railway|
 |:--:|:---:|
 | [<img alt="Deploy on Heroku" src="https://www.herokucdn.com/deploy/button.svg" height="40">](https://heroku.com/deploy?template=https://github.com/docusealco/docuseal-heroku) | [<img alt="Deploy on Railway" src="https://railway.app/button.svg" height="40">](https://railway.app/template/IGoDnc?referralCode=ruU7JR)|
