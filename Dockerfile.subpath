@@ -20,7 +20,7 @@ FROM ruby:3.4.2-alpine AS webpack
 ENV RAILS_ENV=production
 ENV NODE_ENV=production
 # Set the subpath for webpack compilation
-ENV RAILS_RELATIVE_URL_ROOT=/docuseal
+ENV RAILS_RELATIVE_URL_ROOT=${DOCUSEAL_SUBPATH:-/docuseal}
 
 WORKDIR /app
 
@@ -50,7 +50,7 @@ ENV BUNDLE_WITHOUT="development:test"
 ENV LD_PRELOAD=/lib/libgcompat.so.0
 ENV OPENSSL_CONF=/app/openssl_legacy.cnf
 # Set the subpath for Rails
-ENV RAILS_RELATIVE_URL_ROOT=/docuseal
+ENV RAILS_RELATIVE_URL_ROOT=${DOCUSEAL_SUBPATH:-/docuseal}
 
 WORKDIR /app
 

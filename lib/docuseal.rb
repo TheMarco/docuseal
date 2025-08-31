@@ -16,6 +16,8 @@ module Docuseal
   SUPPORT_EMAIL = 'support@docuseal.com'
   HOST = ENV.fetch('HOST', 'localhost')
   AATL_CERT_NAME = 'docuseal_aatl'
+  # Configurable path prefix for deployment flexibility
+  PATH_PREFIX = ENV.fetch("DOCUSEAL_PATH_PREFIX", ENV.fetch("RAILS_RELATIVE_URL_ROOT", ""))
   CONSOLE_URL = if Rails.env.development?
                   'http://console.localhost.io:3001'
                 elsif ENV['MULTITENANT'] == 'true'
