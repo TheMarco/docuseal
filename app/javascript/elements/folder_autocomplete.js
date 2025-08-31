@@ -26,7 +26,8 @@ export default class extends HTMLElement {
       queryParams.append('parent_name', this.dataset.parentName)
     }
 
-    fetch('/template_folders_autocomplete?' + queryParams).then(async (resp) => {
+    const baseUrl = document.querySelector('meta[name="rails-relative-url-root"]')?.content || ''
+    fetch(baseUrl + '/template_folders_autocomplete?' + queryParams).then(async (resp) => {
       const items = await resp.json()
 
       resolve(items)

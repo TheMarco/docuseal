@@ -515,6 +515,15 @@
         :style="{ maxWidth: isBreakpointMd ? '582px' : '' }"
         @success="[isInvite = false, performComplete($event)]"
       />
+      <AppointmentBooking
+        v-else-if="showAppointmentBooking && enableAppointmentBooking"
+        :calendly-url="calendlyUrl"
+        :submitter-name="submitter.name"
+        :submitter-email="submitter.email"
+        @appointment-scheduled="onAppointmentScheduled"
+        @booking-complete="onBookingComplete"
+        @booking-skipped="onBookingSkipped"
+      />
       <FormCompleted
         v-else
         :is-demo="isDemo"
@@ -569,6 +578,7 @@ import DateStep from './date_step'
 import MarkdownContent from './markdown_content'
 import InviteForm from './invite_form'
 import FormCompleted from './completed'
+import AppointmentBooking from './appointment_booking'
 import { IconInnerShadowTop, IconArrowsDiagonal, IconWritingSign, IconArrowsDiagonalMinimize2 } from '@tabler/icons-vue'
 import AppearsOn from './appears_on'
 import i18n from './i18n'
@@ -619,7 +629,8 @@ export default {
     MarkdownContent,
     PaymentStep,
     IconArrowsDiagonalMinimize2,
-    FormCompleted
+    FormCompleted,
+    AppointmentBooking
   },
   provide () {
     return {
@@ -845,12 +856,24 @@ export default {
       type: Object,
       required: false,
       default: () => ({})
+    },
+    enableAppointmentBooking: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    calendlyUrl: {
+      type: String,
+      required: false,
+      default: 'https://calendly.com/your-username'
     }
   },
   data () {
     return {
       isCompleted: false,
       isInvite: false,
+      showAppointmentBooking: false,
+      appointmentBooked: false,
       isFormVisible: this.expand !== false,
       showFillAllRequiredFields: false,
       currentStep: 0,
@@ -1478,6 +1501,11 @@ export default {
 
       if (this.completedRedirectUrl) {
         window.location.href = sanitizeUrl(this.completedRedirectUrl)
+      } else {
+        // Redirect to Calendly booking after a short delay to show completion
+        setTimeout(() => {
+          window.location.href = 'https://calendly.com/marcovhv/30min'
+        }, 2000)
       }
     }
   }

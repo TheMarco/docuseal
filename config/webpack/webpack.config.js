@@ -2,7 +2,13 @@ const { generateWebpackConfig, merge } = require('shakapacker')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const { VueLoaderPlugin } = require('vue-loader')
 
+// Set publicPath to respect Rails subpath configuration
+const publicPath = process.env.RAILS_RELATIVE_URL_ROOT ? `${process.env.RAILS_RELATIVE_URL_ROOT}/packs/` : '/packs/'
+
 const configs = generateWebpackConfig({
+  output: {
+    publicPath: publicPath
+  },
   resolve: {
     extensions: ['.css', '.scss', '.vue']
   },

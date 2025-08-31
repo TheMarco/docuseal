@@ -15,6 +15,8 @@ module Submitters
                     AccountConfig::ALLOW_TYPED_SIGNATURE,
                     AccountConfig::WITH_SUBMITTER_TIMEZONE_KEY,
                     AccountConfig::WITH_SIGNATURE_ID_REASON_KEY,
+                    AccountConfig::ENABLE_APPOINTMENT_BOOKING_KEY,
+                    AccountConfig::CALENDLY_URL_KEY,
                     *(Docuseal.multitenant? ? [] : [AccountConfig::POLICY_LINKS_KEY])].freeze
 
     module_function

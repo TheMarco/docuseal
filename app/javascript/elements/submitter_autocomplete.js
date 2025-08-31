@@ -43,7 +43,8 @@ export default class extends HTMLElement {
     if (q) {
       const queryParams = new URLSearchParams({ q, field: this.dataset.field })
 
-      this.currentFetch ||= fetch('/submitters_autocomplete?' + queryParams)
+      const baseUrl = document.querySelector('meta[name="rails-relative-url-root"]')?.content || ''
+      this.currentFetch ||= fetch(baseUrl + '/submitters_autocomplete?' + queryParams)
 
       this.currentFetch.then(async (resp) => {
         const items = await resp.json()

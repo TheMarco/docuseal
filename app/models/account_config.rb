@@ -49,6 +49,8 @@ class AccountConfig < ApplicationRecord
   COMBINE_PDF_RESULT_KEY = 'combine_pdf_result_key'
   DOCUMENT_FILENAME_FORMAT_KEY = 'document_filename_format'
   POLICY_LINKS_KEY = 'policy_links'
+  ENABLE_APPOINTMENT_BOOKING_KEY = 'enable_appointment_booking'
+  CALENDLY_URL_KEY = 'calendly_url'
 
   DEFAULT_VALUES = {
     SUBMITTER_INVITATION_EMAIL_KEY => lambda {

@@ -46,7 +46,10 @@ safeRegisterElement('submission-form', class extends HTMLElement {
       completedMessage: JSON.parse(this.dataset.completedMessage || '{}'),
       completedRedirectUrl: this.dataset.completedRedirectUrl,
       attachments: reactive(JSON.parse(this.dataset.attachments)),
-      fields: JSON.parse(this.dataset.fields)
+      fields: JSON.parse(this.dataset.fields),
+      baseUrl: process.env.RAILS_RELATIVE_URL_ROOT || '',
+      enableAppointmentBooking: this.dataset.enableAppointmentBooking === 'true',
+      calendlyUrl: this.dataset.calendlyUrl || 'https://calendly.com/your-username'
     })
 
     this.app.mount(this.appElem)

@@ -84,7 +84,8 @@ window.customElements.define('draw-signature', class extends HTMLElement {
       formData.append('name', 'attachments')
       formData.append('remember_signature', 'true')
 
-      return fetch('/api/attachments', {
+      const baseUrl = document.querySelector('meta[name="rails-relative-url-root"]')?.content || ''
+      return fetch(baseUrl + '/api/attachments', {
         method: 'POST',
         body: formData
       }).then(resp => resp.json())

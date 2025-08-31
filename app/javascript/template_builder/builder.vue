@@ -122,7 +122,7 @@
           <a
             v-else-if="withSignYourselfButton"
             id="sign_yourself_button"
-            :href="`/templates/${template.id}/submissions/new?selfsign=true`"
+            :href="`${baseUrl}/templates/${template.id}/submissions/new?selfsign=true`"
             class="btn btn-primary btn-ghost text-base hidden md:flex"
             data-turbo-frame="modal"
             @click="maybeShowErrorTemplateAlert"
@@ -138,7 +138,7 @@
           <a
             v-if="withSendButton"
             id="send_button"
-            :href="`/templates/${template.id}/submissions/new?with_link=true`"
+            :href="`${baseUrl}/templates/${template.id}/submissions/new?with_link=true`"
             data-turbo-frame="modal"
             class="white-button md:!px-6"
             @click="maybeShowErrorTemplateAlert"
@@ -540,6 +540,7 @@ export default {
       baseFetch: this.baseFetch,
       fieldTypes: this.fieldTypes,
       backgroundColor: this.backgroundColor,
+      baseUrl: this.baseUrl,
       withPhone: this.withPhone,
       withVerification: this.withVerification,
       withPayment: this.withPayment,
@@ -919,7 +920,7 @@ export default {
 
     this.$nextTick(() => {
       if (document.location.search?.includes('stripe_connect_success')) {
-        document.querySelector('form[action="/auth/stripe_connect"]')?.closest('.dropdown')?.querySelector('label')?.focus()
+        document.querySelector(`form[action="${this.baseUrl}/auth/stripe_connect"]`)?.closest('.dropdown')?.querySelector('label')?.focus()
       }
     })
 
@@ -1857,7 +1858,7 @@ export default {
           this.isSaving = true
 
           this.save().then(() => {
-            window.Turbo.visit(`/templates/${this.template.id}`)
+            window.Turbo.visit(`${this.baseUrl}/templates/${this.template.id}`)
           }).finally(() => {
             this.isSaving = false
           })

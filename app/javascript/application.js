@@ -140,7 +140,8 @@ safeRegisterElement('template-builder', class extends HTMLElement {
       withReplaceAndCloneUpload: true,
       currencies: (this.dataset.currencies || '').split(',').filter(Boolean),
       acceptFileTypes: this.dataset.acceptFileTypes,
-      showTourStartForm: this.dataset.showTourStartForm === 'true'
+      showTourStartForm: this.dataset.showTourStartForm === 'true',
+      baseUrl: process.env.RAILS_RELATIVE_URL_ROOT || ''
     })
 
     this.component = this.app.mount(this.appElem)

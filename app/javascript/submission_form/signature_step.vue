@@ -500,7 +500,7 @@ export default {
         import('qr-creator').then(({ default: Qr }) => {
           if (this.$refs.qrCanvas) {
             Qr.render({
-              text: `${document.location.origin}/p/${this.submitterSlug}?f=${this.field.uuid.split('-')[0]}`,
+              text: `${document.location.origin}${this.baseUrl}/p/${this.submitterSlug}?f=${this.field.uuid.split('-')[0]}`,
               radius: 0.0,
               ecLevel: 'H',
               background: null,

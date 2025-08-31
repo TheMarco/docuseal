@@ -117,7 +117,7 @@
         <form
           v-if="!isConnected"
           data-turbo="false"
-          action="/auth/stripe_connect"
+          :action="baseUrl + '/auth/stripe_connect'"
           accept-charset="UTF-8"
           target="_blank"
           method="post"
@@ -247,7 +247,7 @@ export default {
     IconInnerShadowTop,
     IconBrandStripe
   },
-  inject: ['backgroundColor', 'save', 'currencies', 't', 'isPaymentConnected'],
+  inject: ['backgroundColor', 'save', 'currencies', 't', 'isPaymentConnected', 'baseUrl'],
   props: {
     field: {
       type: Object,
@@ -266,7 +266,7 @@ export default {
       return document.location.search?.includes('stripe_connect_success')
     },
     redirectUri () {
-      return document.location.origin + '/auth/stripe_connect/callback'
+      return document.location.origin + this.baseUrl + '/auth/stripe_connect/callback'
     },
     defaultCurrencies () {
       return ['USD', 'EUR', 'GBP', 'CAD', 'AUD']
@@ -316,7 +316,7 @@ export default {
     checkStatus () {
       this.isLoading = true
 
-      fetch('/api/stripe_connect').then(async (resp) => {
+      fetch(this.baseUrl + '/api/stripe_connect').then(async (resp) => {
         const { status } = await resp.json()
 
         if (status === 'connected') {

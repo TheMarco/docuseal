@@ -238,6 +238,7 @@ export default {
     IconInfoCircle,
     IconInnerShadowTop
   },
+  inject: ['baseUrl'],
   props: {
     template: {
       type: Object,
@@ -427,7 +428,7 @@ export default {
 
       formData.append('file', file)
 
-      return fetch('/upload_spreadsheet', {
+      return fetch(this.baseUrl + '/upload_spreadsheet', {
         method: 'POST',
         body: formData,
         headers: {

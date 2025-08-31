@@ -85,7 +85,8 @@ export default targetable(class extends HTMLElement {
     this.fileDropzoneLoading.previousElementSibling.classList.add('hidden')
     this.fileDropzoneLoading.classList.add('opacity-50')
 
-    this.uploadFiles(e.dataTransfer.files, '/templates_upload')
+    const baseUrl = document.querySelector('meta[name="rails-relative-url-root"]')?.content || ''
+    this.uploadFiles(e.dataTransfer.files, baseUrl + '/templates_upload')
   }
 
   onDropFolder = (e, el) => {

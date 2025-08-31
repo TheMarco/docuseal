@@ -46,7 +46,8 @@ export default class extends HTMLElement {
         this.textarea.parentNode.append(bulkMessage)
       }
 
-      bulkMessage.innerHTML = '<a class="link" data-turbo="false" href="/upgrade">Upgrade</a> to bulk send multiple recipients'
+      const baseUrl = document.querySelector('meta[name="rails-relative-url-root"]')?.content || ''
+      bulkMessage.innerHTML = '<a class="link" data-turbo="false" href="' + baseUrl + '/upgrade">Upgrade</a> to bulk send multiple recipients'
     }
   }
 

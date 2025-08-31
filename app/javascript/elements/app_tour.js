@@ -326,7 +326,8 @@ export default class extends HTMLElement {
   }
 
   async disableAppGuide () {
-    return fetch('/user_configs', {
+    const baseUrl = document.querySelector('meta[name="rails-relative-url-root"]')?.content || ''
+    return fetch(baseUrl + '/user_configs', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
